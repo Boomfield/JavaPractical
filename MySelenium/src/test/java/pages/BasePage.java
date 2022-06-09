@@ -2,7 +2,6 @@ package pages;
 
 import driver.Driver;
 
-
 public class BasePage {
    public Driver driver;
 

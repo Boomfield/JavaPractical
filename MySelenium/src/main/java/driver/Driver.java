@@ -4,7 +4,6 @@ import driver.config.BaseDriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
 
@@ -13,10 +12,10 @@ public class Driver {
     private WebDriver driver;
     private BaseDriverConfig config;
 
+
     public WebDriver getDriver() {
         if (driver == null) {
-            driver = config.creatDriver();
-            driver.manage().window().maximize();
+            driver = config.createDriver();
         }
 
         return driver;
@@ -38,7 +37,17 @@ public class Driver {
         return (ArrayList<WebElement>) getDriver().findElements(by);
     }
 
+    public void enterText (By by,String text) {
+        WebElement search = driver.findElement(by);
+        search.sendKeys(text);
+    }
+
     public void close() {
         getDriver().close();
+    }
+
+    public void closeCookie (By by) {
+        WebElement buttonCloseCookie = driver.findElement(by);
+        buttonCloseCookie.click();
     }
 }

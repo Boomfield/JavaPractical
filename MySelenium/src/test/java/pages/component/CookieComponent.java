@@ -7,7 +7,7 @@ import pages.BasePage;
 
 public class CookieComponent extends BasePage {
 
-    By buttonCookie = By.xpath("//button[@id = 'truste-consent-required']");
+    public By buttonCookie = By.xpath("//button[@id = 'truste-consent-required']");
 
     public CookieComponent(Driver driver) {
         super(driver);

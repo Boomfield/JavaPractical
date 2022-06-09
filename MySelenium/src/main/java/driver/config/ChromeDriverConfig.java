@@ -6,16 +6,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ChromeDriverConfig extends BaseDriverConfig {
     public String extensionPath;
-
-@Override
-    public WebDriver creatDriver() {
+    BaseDriverConfig baseDriverBuilder = new ChromeBuilder().withTimePageLoad(60).withTimeElementWait(40).build();
+    @Override
+    public WebDriver createDriver() {
         System.setProperty("webdriver.chrome.driver", "C:\\P\\IntelliJ IDEA Community Edition 2021.3.1\\JavaPractical\\MySelenium\\drivers\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
-        driver.manage().timeouts().pageLoadTimeout(TimePageLoad);
-        driver.manage().timeouts().implicitlyWait(TimeElementWait);
-        driver.manage().window().maximize();
-
+        waitElementAndPage(baseDriverBuilder.TimePageLoad,baseDriverBuilder.TimeElementWait);
+        maximizeBrowser();
 
         return driver;
     }

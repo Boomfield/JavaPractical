@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseSteps {
 
-    Driver driver;
+    protected Driver driver;
 
     public BaseSteps (Driver driver){
         this.driver = driver;
