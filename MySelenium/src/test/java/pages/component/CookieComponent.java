@@ -13,7 +13,6 @@ public class CookieComponent extends BasePage {
         super(driver);
     }
     public void closeCookie () {
-        WebElement buttonCloseCookie = driver.findElement(buttonCookie);
-        buttonCloseCookie.click();
+        driver.click(buttonCookie);
     }
 }

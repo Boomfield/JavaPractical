@@ -23,9 +23,7 @@ public class NavigatorPage extends BasePage {
     }
 
     public ArrayList<String> getTopicSearchResults() {
-        ArrayList<String> allResultElements = driver.findElements(topicSearchResultLabel).stream().map(x -> x.getText()).collect(toCollection(ArrayList::new));
-
-        return allResultElements;
+       return driver.getResultTextList(topicSearchResultLabel);
     }
 
     public void clickTopicFilter (String nameFilter) {

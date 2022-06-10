@@ -1,18 +1,13 @@
 package tests;
 
-import data.ConstantPage;
 import driver.Driver;
 import driver.config.ChromeDriverConfig;
-import helpers.PropertyHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.NavigatorPage;
 import pages.component.CookieComponent;
-import wait.Waiter;
-
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toCollection;

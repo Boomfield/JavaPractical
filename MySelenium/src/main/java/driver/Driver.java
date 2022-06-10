@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 
+import static java.util.stream.Collectors.toCollection;
+
 public class Driver {
 
     private WebDriver driver;
@@ -37,6 +39,18 @@ public class Driver {
         return (ArrayList<WebElement>) getDriver().findElements(by);
     }
 
+    public ArrayList <String> getResultTextList (By by) {
+       ArrayList<String> listResult = driver.findElements(by)
+                .stream().map(x -> x.getText()).collect(toCollection(ArrayList::new));
+
+       return listResult;
+    }
+
+    public void click (By by) {
+        WebElement button = driver.findElement(by);
+        button.click();
+    }
+
     public void enterText (By by,String text) {
         WebElement search = driver.findElement(by);
         search.sendKeys(text);
@@ -46,8 +60,4 @@ public class Driver {
         getDriver().close();
     }
 
-    public void closeCookie (By by) {
-        WebElement buttonCloseCookie = driver.findElement(by);
-        buttonCloseCookie.click();
-    }
 }
