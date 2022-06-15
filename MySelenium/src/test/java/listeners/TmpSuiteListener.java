@@ -5,9 +5,9 @@ import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
 public class TmpSuiteListener implements ISuiteListener {
-
     @Override
     public void onStart(ISuite suite) {
-        PropertyHelper.initProperty("config.prod.properties");
+        String env =  suite.getParameter("env");
+        PropertyHelper.initProperty("config."+env+".properties");
     }
 }

@@ -1,19 +1,15 @@
 package pages;
 
 import configuration.Constants;
-import data.ConstantPage;
 import driver.Driver;
 import pages.component.CookieComponent;
 
 public class NavigationSap extends BasePage{
-    public CookieComponent cookieComponent = new CookieComponent(driver);
 
-    public NavigationSap(Driver driver) {
-        super(driver);
-    }
+    public CookieComponent cookieComponent = new CookieComponent();
 
-    public void openPageAndAcceptCookies (String url) {
-        driver.navigate(url);
+    public void openPageAndAcceptCookies (String tutorials) {
+        Driver.instance.get().navigate(Constants.SiteProperties + tutorials);
         cookieComponent.closeCookie();
     }
 

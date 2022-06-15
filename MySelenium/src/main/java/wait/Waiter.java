@@ -7,11 +7,9 @@ public class Waiter {
 
     public static <T> boolean wait(Supplier<Boolean> action, int seconds) {
             LocalDateTime endDate = LocalDateTime.now().plusSeconds(seconds);
-
             while (LocalDateTime.now().isBefore(endDate)) {
                 try {
                     boolean result = action.get();
-
                     if (result) {
                         return true;
                     }
@@ -23,7 +21,7 @@ public class Waiter {
                     }
                 }
             }
-
             return false;
         }
+
 }

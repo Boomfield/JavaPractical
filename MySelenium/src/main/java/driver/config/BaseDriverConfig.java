@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public abstract class BaseDriverConfig {
+
     public Duration TimePageLoad ;
     public Duration TimeElementWait ;
 

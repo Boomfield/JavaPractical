@@ -1,6 +1,7 @@
 package pages.helpers;
 
 public enum TypeTitle {
+
     Topic,
     SoftwareProduct,
     Experience,
@@ -12,7 +13,6 @@ public enum TypeTitle {
             case SoftwareProduct: return "Software Product";
             default: return null;
         }
-
     }
 
 }

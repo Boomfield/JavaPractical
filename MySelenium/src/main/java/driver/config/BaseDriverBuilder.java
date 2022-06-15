@@ -5,9 +5,6 @@ import java.time.Duration;
 public class BaseDriverBuilder {
 
    protected BaseDriverConfig baseDriverConfig;
-    public Duration TimePageLoad ;
-    public Duration TimeElementWait ;
-
 
     public BaseDriverBuilder withTimePageLoad (int second){
         baseDriverConfig.TimePageLoad = Duration.ofSeconds(second);
