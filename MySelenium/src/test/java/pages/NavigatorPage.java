@@ -1,39 +1,41 @@
 package pages;
 
+import component.Locator;
 import driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.component.FilterFacet;
+import pages.component.Title;
 import pages.helpers.TypeFilterTitle;
 import wait.Waiter;
 import java.util.ArrayList;
 
 public class NavigatorPage extends BasePage {
 
-    public By topicSearchTextInput = By.xpath("//input[@name = 'topic']");
-    public By topicSearchResultLabel = By.xpath("(//div[@class='simplebar-content'])[1]//span");
-    public By allPageNumbers = By.xpath("//a[contains(@class,'PageLink__pageLink')]");
-    public By headerExp = By.xpath("//div[contains(@class,'Header__experience')]");
+    public FilterFacet topic = new FilterFacet(By.xpath("(//div[contains(@class,'FilterFacets__filterFacetsColumn')])[1]"));
+    public Locator allPageNumber = getLocator( "//a[contains(@class,'PageLink__pageLink')]");
+    public Title title = new Title();
 
-    public void enterTopicSearchText(String title) {
-        Driver.instance.get().enterText(topicSearchTextInput,title);
+    public NavigatorPage(By by) {
+        super(by);
     }
 
-    public ArrayList<String> getTopicSearchResults() {
-       return Driver.instance.get().getResultTextList(topicSearchResultLabel);
+    public NavigatorPage () {
+
     }
 
     public void clickTopicFilter (TypeFilterTitle nameFilter) {
-        Waiter.wait(()->Driver.instance.get().exist(headerExp),10);
-        Driver.instance.get().findElement(By.xpath("//span[.='"+nameFilter+"']")).click();
+        Waiter.wait(()->Driver.instance.get().exist(title.headerTitle),10);
+        Driver.instance.get().findElement(getLocator(String.format("//span[.='%s']", nameFilter))).click();
     }
 
     public int getPaginationSize () {
-        int paginationSize = Driver.instance.get().findElements(allPageNumbers).size();
+        int paginationSize = Driver.instance.get().findElements(allPageNumber).size();
         return paginationSize;
     }
 
     public void clickPageLinkNumber (int pageNumber) {
-        ArrayList<WebElement> listAllNumberPageLink = Driver.instance.get().findElements(allPageNumbers);
+        ArrayList<WebElement> listAllNumberPageLink = Driver.instance.get().findElements(allPageNumber);
         listAllNumberPageLink.get(pageNumber).click();
     }
 

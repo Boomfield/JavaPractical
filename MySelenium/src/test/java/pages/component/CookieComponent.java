@@ -1,15 +1,17 @@
 package pages.component;
 
+import component.Locator;
 import driver.Driver;
 import org.openqa.selenium.By;
 import pages.BasePage;
 
 public class CookieComponent extends BasePage {
 
-    public By buttonCookie = By.xpath("//button[@id = 'truste-consent-required']");
+    public String buttonCookie = "//button[@id = 'truste-consent-required']";
+    public Locator cookie = getLocator(buttonCookie);
 
     public void closeCookie () {
-        Driver.instance.get().click(buttonCookie);
+        Driver.instance.get().click(cookie);
     }
 
 }

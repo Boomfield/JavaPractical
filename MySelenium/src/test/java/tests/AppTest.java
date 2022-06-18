@@ -1,9 +1,11 @@
 package tests;
 
 import data.ConstantPage;
+import driver.Driver;
 import org.testng.annotations.*;
 import pages.NavigationSap;
 import pages.NavigatorPage;
+import pages.component.FilterFacet;
 import pages.helpers.TypeFilterTitle;
 import steps.NavigatorSteps;
 
@@ -23,7 +25,7 @@ public class AppTest extends BaseTest{
     @Test
     public void shouldAnswerWithTrue1() {
         navigationSap.openPageAndAcceptCookies(ConstantPage.tutorials);
-        navigatorPage.enterTopicSearchText(findElement);
+        navigatorPage.topic.enterTopicSearchText(findElement);
         navigatorSteps.VerifyAllTopicSearchResultsContains(findElement);
     }
 
