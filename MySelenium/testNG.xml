@@ -9,7 +9,7 @@
     </listeners>
     <test name="Test" >
         <classes>
-            <class name="tests.AppTest"></class>
+            <class name="tests.TestTutorialPage"></class>
         </classes>
     </test>
 </suite>

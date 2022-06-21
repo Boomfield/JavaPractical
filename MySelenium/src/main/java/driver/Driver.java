@@ -2,7 +2,6 @@ package driver;
 
 import component.Locator;
 import driver.config.BaseDriverConfig;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.time.Duration;
@@ -16,11 +15,15 @@ public class Driver {
     private BaseDriverConfig config;
     public static ThreadLocal<Driver> instance = new ThreadLocal<>();
 
-    public WebDriver getDriver() {
+    private WebDriver getStandardDriver() {
         if (driver == null) {
-            driver = config.createDriver();
+            driver = config.createDriver(System.getenv("CHROME_DRIVER"));
         }
         return driver;
+    }
+
+    public static Driver getDriver() {
+        return Driver.instance.get();
     }
 
     public Driver (BaseDriverConfig config) {
@@ -28,7 +31,7 @@ public class Driver {
     }
 
     public void navigate (String url) {
-        getDriver().navigate().to(url);
+        getStandardDriver().navigate().to(url);
     }
 
     public WebElement findElement (Locator locator) {
@@ -40,11 +43,10 @@ public class Driver {
 
     public ArrayList <WebElement> findElements (Locator locator) {
         if(locator.parent != null) {
-            return (ArrayList<WebElement>) getDriver().findElement(locator.parent).findElements(locator.element);
+            return (ArrayList<WebElement>) getStandardDriver().findElement(locator.parent).findElements(locator.element);
         }
-        return (ArrayList<WebElement>) getDriver().findElements(locator.element);
+        return (ArrayList<WebElement>) getStandardDriver().findElements(locator.element);
     }
-
 
     public ArrayList <String> getResultTextList (Locator locator) {
        ArrayList<String> listResult = findElements(locator)
@@ -57,26 +59,37 @@ public class Driver {
         button.click();
     }
 
-    public void enterText (Locator locator,String text) {
+    public void clickByText(Locator locator, String nameFilter) {
+        ArrayList <WebElement> listFilterEqualsNameF = Driver.getDriver().findElements(locator)
+                .stream().filter(x->x.getText().equals(nameFilter)).collect(toCollection(ArrayList::new));
+        listFilterEqualsNameF.get(0).click();
+    }
+
+    public void clickPaginationByIndex(int pageNumber, Locator locator) {
+        ArrayList<WebElement> listAllNumberPageLink = Driver.getDriver().findElements(locator);
+        listAllNumberPageLink.get(pageNumber).click();
+    }
+
+    public void enterText (Locator locator, String text) {
         WebElement search = findElement(locator);
         search.sendKeys(text);
     }
 
     public boolean exist(Locator locator) {
         try {
-            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-            return getDriver().findElement(locator.element) != null;
+            getStandardDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+            return getStandardDriver().findElement(locator.element) != null;
         }
         catch (Exception ex) {
             return false;
         }
         finally {
-            getDriver().manage().timeouts().implicitlyWait(config.TimeElementWait);
+            getStandardDriver().manage().timeouts().implicitlyWait(config.TimeElementWait);
         }
     }
 
     public void close() {
-        getDriver().close();
+        getStandardDriver().close();
     }
 
 }

@@ -7,11 +7,10 @@ import pages.BasePage;
 
 public class CookieComponent extends BasePage {
 
-    public String buttonCookie = "//button[@id = 'truste-consent-required']";
-    public Locator cookie = getLocator(buttonCookie);
+    public Locator cookie = getLocatorByXpath("//button[@id = 'truste-consent-required']");
 
     public void closeCookie () {
-        Driver.instance.get().click(cookie);
+        Driver.getDriver().click(cookie);
     }
 
 }

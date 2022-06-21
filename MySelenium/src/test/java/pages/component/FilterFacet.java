@@ -4,26 +4,35 @@ import component.Locator;
 import driver.Driver;
 import org.openqa.selenium.By;
 import pages.BasePage;
+import pages.helpers.ExperienceType;
+import wait.Waiter;
 
 import java.util.ArrayList;
 
 public class FilterFacet extends BasePage {
 
-    public Locator resultLabelBy = getLocator(".//div[@class='simplebar-content']//span");
-    public Locator filterSearchBy = getLocator(".//input[contains(@class,'SearchInput__input')]");
+    public Locator resultLabelBy = getLocatorByCssSelector("div.simplebar-content span");
+    public Locator filterSearchBy = getLocatorByXpath(".//input[contains(@class,'SearchInput__input')]");
+    public ResultItem resultItem = new ResultItem();
 
     public FilterFacet(By by) {
         super(by);
     }
 
-    public FilterFacet () {}
+    public FilterFacet() {
+    }
 
     public void enterTopicSearchText(String title) {
-        Driver.instance.get().enterText(filterSearchBy,title);
+        Driver.getDriver().enterText(filterSearchBy, title);
     }
 
     public ArrayList<String> getTopicSearchResults() {
-        return Driver.instance.get().getResultTextList(resultLabelBy);
+        return Driver.getDriver().getResultTextList(resultLabelBy);
+    }
+
+    public void clickExperienceFilter(ExperienceType nameFilterExperience) {
+        Waiter.wait(() -> Driver.getDriver().exist(resultItem.headerTitle), 10);
+        Driver.getDriver().clickByText(resultLabelBy,nameFilterExperience.toString());
     }
 
 }

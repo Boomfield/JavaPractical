@@ -1,5 +1,5 @@
 package data;
 
-public class ConstantPage {
+public class PageUrls {
     public static final String tutorials = "/tutorial-navigator.html";
 }

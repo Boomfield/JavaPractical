@@ -1,6 +1,6 @@
 package pages.helpers;
 
-public enum TypeFilterTitle {
+public enum ExperienceType {
 
     Beginner,
     Intermediate,

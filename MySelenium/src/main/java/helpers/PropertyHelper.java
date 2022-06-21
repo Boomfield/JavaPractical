@@ -8,10 +8,10 @@ public class PropertyHelper {
 
     private static Properties properties;
 
-    public static void initProperty(String fileName) {
+    public static void initProperty(String pathToPropertiesFile) {
         properties = new Properties();
         try {
-            FileInputStream inputStream = new FileInputStream("src\\test\\resources\\" + fileName);
+            FileInputStream inputStream = new FileInputStream(pathToPropertiesFile);
             properties.load(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);

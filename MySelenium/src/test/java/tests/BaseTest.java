@@ -3,11 +3,13 @@ package tests;
 import driver.Driver;
 import driver.config.BaseDriverConfig;
 import driver.config.ChromeBuilder;
+import driver.config.DriverConfigFactory;
+import helpers.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-    private static BaseDriverConfig baseDriverBuilder = new ChromeBuilder().withTimePageLoad(60).withTimeElementWait(40).build();
+    private static BaseDriverConfig baseDriverBuilder = new DriverConfigFactory().getConfig(BrowserType.Chrome);
 
     @BeforeMethod
     public void setUp() {
@@ -15,9 +17,8 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(2000);
-        Driver.instance.get().close();
+    public void tearDown() {
+        Driver.getDriver().close();
     }
 
 }
