@@ -2,7 +2,6 @@ package tests;
 
 import driver.Driver;
 import driver.config.BaseDriverConfig;
-import driver.config.ChromeBuilder;
 import driver.config.DriverConfigFactory;
 import helpers.BrowserType;
 import org.testng.annotations.AfterMethod;

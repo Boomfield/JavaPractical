@@ -1,15 +1,13 @@
 package tests;
 
-import component.Locator;
 import data.PageUrls;
-import driver.Driver;
 import org.testng.annotations.*;
 import pages.NavigationSap;
 import pages.NavigatorPage;
 import pages.helpers.ExperienceType;
 import steps.NavigatorSteps;
 
-public class TestTutorialPage extends BaseTest{
+public class TestTutorialPage extends BaseTest {
 
     private String searchFilterText = "abap";
     private NavigatorPage navigatorPage;
@@ -23,17 +21,17 @@ public class TestTutorialPage extends BaseTest{
     }
 
     @Test
-    public void shouldAnswerWithTrue1() {
+    public void checkResultSearchTopic() {
         navigationSap.openPageAndAcceptCookies(PageUrls.tutorials);
         navigatorPage.topicFacetSection.enterTopicSearchText(searchFilterText);
         navigatorSteps.VerifyAllTopicSearchResultsContains(searchFilterText);
     }
 
     @Test
-    public void shouldAnswerWithTrue2() {
+    public void checkFilterExperienceWithTitleHeader() {
         navigationSap.openPageAndAcceptCookies(PageUrls.tutorials);
         navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.Intermediate);
-        navigatorSteps.VerifyAllHeaderExpResultsContains(ExperienceType.Intermediate);
+        navigatorSteps.VerifyAllHeaderResultsContains(ExperienceType.Intermediate);
     }
 
 }

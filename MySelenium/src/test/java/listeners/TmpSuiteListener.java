@@ -7,7 +7,7 @@ import org.testng.ISuiteListener;
 public class TmpSuiteListener implements ISuiteListener {
     @Override
     public void onStart(ISuite suite) {
-        String env =  suite.getParameter("env");
-        PropertyHelper.initProperty(String.format("src\\test\\resources\\config.%s.properties",env));
+        String env = suite.getParameter("env");
+        PropertyHelper.initProperty(String.format("src\\test\\resources\\config.%s.properties", env));
     }
 }

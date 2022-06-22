@@ -1,7 +1,6 @@
 package pages.component;
 
 import component.Locator;
-import org.openqa.selenium.By;
 import pages.BasePage;
 
 public class ResultItem extends BasePage {

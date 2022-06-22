@@ -11,15 +11,15 @@ public class BasePage {
         this.byXpath = byXpath;
     }
 
-    public BasePage () {
+    public BasePage() {
     }
 
-    public Locator getLocatorByXpath(String xPathElement) {
-        return new Locator(By.xpath(xPathElement), byXpath);
+    public Locator getLocatorByXpath(String byXpath) {
+        return new Locator(By.xpath(byXpath), this.byXpath);
     }
 
-    public Locator getLocatorByCssSelector(String xPathElement) {
-        return new Locator(By.cssSelector(xPathElement), byXpath);
+    public Locator getLocatorByCss(String css) {
+        return new Locator(By.cssSelector(css), byXpath);
     }
 
 }
